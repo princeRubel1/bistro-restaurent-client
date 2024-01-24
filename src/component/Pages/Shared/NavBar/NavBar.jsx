@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <div style={{ background: "rgba(21, 21, 21, 0.50)" }} className="">
-      <div className="mx-10">
-        <div className="navbar text-slate-100">
+    <div className="bg-black bg-opacity-40 w-full fixed z-10">
+      <div className="mx-32">
+        <div className="navbar  text-slate-100">
           <div className="navbar-start">
             <div className="dropdown">
               <div

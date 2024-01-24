@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="mt-24">
-      <div className=" flex text-neutral-content">
-        <div style={{ backgroundColor: "#1F2937" }} className="p-10  w-[960px]">
+      <div className=" lg:flex  text-neutral-content">
+        <div
+          style={{ backgroundColor: "#1F2937" }}
+          className="p-10 md:w-[400px]  lg:w-[960px]"
+        >
           <div className="text-center space-y-2 mx-auto">
             <h2 className="text-2xl font-semibold">CONTACT US</h2>
             <h6 className="text-xl">123 ABS Street, Uni 21, Bangladesh</h6>
@@ -14,14 +17,14 @@ const Footer = () => {
             <p className="text-xl">Sat - Sun: 10:00 - 6:00</p>
           </div>
         </div>
-        <div style={{ backgroundColor: "#101827" }} className="p-10 w-[960px] ">
+        <div
+          style={{ backgroundColor: "#101827" }}
+          className="p-10 md:w-[400px] lg:w-[960px] "
+        >
           <div className="text-center space-y-2 mx-auto">
             <h2 className="text-2xl font-semibold">FOLLOW US</h2>
             <h4 className="text-xl">Join us on social media</h4>
-            <div
-              style={{ marginLeft: "376px" }}
-              className="flex space-x-4 mx-auto text-center text-4xl"
-            >
+            <div className=" lg:flex  lg:ml-96 md:ml-40 space-x-4 mx-auto text-center text-4xl">
               <span>
                 <Link to="https://www.facebook.com/">
                   <FaFacebook></FaFacebook>
