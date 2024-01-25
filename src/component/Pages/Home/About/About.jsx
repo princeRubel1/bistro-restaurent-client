@@ -1,12 +1,10 @@
 import React from "react";
-import img from "../../../../assets/shop/image.png";
-
+import "./About.css";
 const About = () => {
   return (
-    <div className="mt-32 mb-20">
-      <div className="relative">
-        <img src={img} alt="" />
-        <div className="w-[900px] absolute text-center -mt-96 ml-48 bg-white p-12 space-y-2">
+    <div className=" pt-8  about-item  mb-20">
+      <div className=" ">
+        <div className="  text-center my-32 mx-48 bg-white p-12 space-y-2">
           <h2 className="uppercase text-4xl text-black font-semibold">
             Bistro Boss restaurant
           </h2>

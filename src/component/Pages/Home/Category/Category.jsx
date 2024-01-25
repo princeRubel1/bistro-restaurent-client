@@ -11,7 +11,7 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const Category = () => {
   return (
-    <div className="mt-24">
+    <div className="mt-24 mb-24">
       <section>
         <SectionTitle
           subHeading={"---From 11:00 am to 10:00 pm---"}

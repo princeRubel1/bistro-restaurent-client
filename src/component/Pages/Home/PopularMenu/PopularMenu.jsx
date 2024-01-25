@@ -24,6 +24,14 @@ const PopularMenu = () => {
           <MenuItem key={item.id} item={item}></MenuItem>
         ))}
       </div>
+      <div className="text-center mt-16">
+        <button
+          style={{ borderRadius: "8px", borderBottom: " 3px solid black" }}
+          className="py-2 px-6 hover:bg-black bg-transparent  text-xl  hover:text-white shadow-lg font-semibold text-black"
+        >
+          Read More
+        </button>
+      </div>
     </section>
   );
 };
