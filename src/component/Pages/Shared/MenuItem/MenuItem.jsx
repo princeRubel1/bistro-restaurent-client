@@ -1,7 +1,7 @@
 import React from "react";
 
 const MenuItem = ({ item }) => {
-  const { id, name, recipe, image, price } = item;
+  const { id, foodName, shortDescription, image, price } = item;
   return (
     <div>
       <div className="flex items-center space-x-4">
@@ -13,8 +13,8 @@ const MenuItem = ({ item }) => {
         />
 
         <div>
-          <h2 className="uppercase tex-2xl font-semibold">{name}</h2>
-          <p>{recipe}</p>
+          <h2 className="uppercase tex-2xl font-semibold">{foodName}</h2>
+          <p>{shortDescription}</p>
         </div>
         <p className="text-xl text-red-400">${price}</p>
       </div>

@@ -13,8 +13,8 @@ const Footer = () => {
             <h2 className="text-2xl font-semibold">CONTACT US</h2>
             <h6 className="text-xl">123 ABS Street, Uni 21, Bangladesh</h6>
             <span className="text-xl">+88 123456789</span>
-            <p className="text-xl">Mon - Fri: 08:00 - 6:00</p>
-            <p className="text-xl">Sat - Sun: 10:00 - 6:00</p>
+            <p className="text-xl">Mon - Fri : 08:00 - 6 : 00</p>
+            <p className="text-xl">Sat - Sun : 10:00 - 6 : 00</p>
           </div>
         </div>
         <div
