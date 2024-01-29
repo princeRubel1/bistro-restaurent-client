@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
+
+  // cart data load
+
   return (
     <div className="bg-black bg-opacity-40 w-full fixed z-10">
       <div className="mx-32">
@@ -29,7 +41,7 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-500 text-white rounded-box w-52"
               >
                 <li>
                   <Link>HOME</Link>
@@ -44,47 +56,100 @@ const NavBar = () => {
                   <Link>OUR MENU</Link>
                 </li>
                 <li>
-                  <Link>OUR ORDER</Link>
+                  <Link>OUR SHOP</Link>
                 </li>
               </ul>
             </div>
             <a
               style={{ letterSpacing: "4.12px " }}
-              className="text-xl font-semibold"
+              className="text-xl  font-semibold"
             >
               BISTRO BOSS
               <br /> <span className="">RESTAURANT</span>
             </a>
           </div>
-          <div className="navbar-center hidden items-center lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <Link to="/">HOME</Link>
-              </li>
-              <li>
-                <Link>CONTACT US</Link>
-              </li>
-              <li>
-                <Link>DASHBOARD</Link>
-              </li>
-              <li>
-                <Link to="/menu">OUR MENU</Link>
-              </li>
-              <li>
-                <Link to="/order">OUR ORDER</Link>
-              </li>
+          <div className="navbar-center hidden items-center lg:flex mr-20">
+            <ul className="menu menu-horizontal space-x-6 text-lg px-1">
+              <>
+                <Link className="hover:text-slate-500 hover:border-b-2" to="/">
+                  HOME
+                </Link>
+              </>
+              <>
+                <Link
+                  to="/contactus"
+                  className="hover:text-slate-500 hover:border-b-2"
+                >
+                  CONTACT US
+                </Link>
+              </>
+              <>
+                <Link
+                  to="dashboard/userhome"
+                  className="hover:text-slate-500 hover:border-b-2"
+                >
+                  DASHBOARD
+                </Link>
+              </>
+              <>
+                <Link
+                  className="hover:text-slate-500 hover:border-b-2"
+                  to="/menu"
+                >
+                  OUR MENU
+                </Link>
+              </>
+              <>
+                <Link
+                  className="hover:text-slate-500 hover:border-b-2"
+                  to="/order/Salad"
+                >
+                  OUR SHOP
+                </Link>
+              </>
+              <>
+                <Link to="/dashboard/cart">
+                  <div className="right-0 flex">
+                    <FaShoppingCart className="text-3xl"></FaShoppingCart>
+                    <div className="badge-sm badge-secondary rounded-badge">
+                      {cart?.length || 0}
+                    </div>
+                  </div>
+                </Link>
+              </>
             </ul>
           </div>
-          <div className="navbar-end">
-            <Link to="login">
-              <button
-                className="px-8 py-3 bg-transparent border text-slate-100 border-white rounded
+          {user?.email ? (
+            <>
+              <img
+                title={user?.displayName}
+                className="rounded-full mx-auto lg:mt-0 sm:mt-2 md:mt-2 mr-4 flex items-center w-14 cursor-pointer"
+                src={user?.photoURL}
+              />
+              <Link>
+                <button
+                  onClick={handleLogOut}
+                  className="px-8 py-3 bg-transparent border text-slate-100 border-white rounded
                 hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                Login
-              </button>
-            </Link>
-          </div>
+                >
+                  LogOut
+                </button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="navbar-end lg:block hidden ">
+                <Link to="login">
+                  <button
+                    className="px-8 py-3 bg-transparent border text-slate-100 border-white rounded
+                hover:bg-primary hover:text-white transition-all duration-300"
+                  >
+                    Login
+                  </button>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

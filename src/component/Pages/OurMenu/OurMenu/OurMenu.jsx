@@ -6,7 +6,7 @@ import dessertImg from "../../../../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../../assets/menu/salad-bg.jpg";
 import soupImg from "../../../../assets/menu/soup-bg.jpg";
-
+import saleImg from "../../../../assets/shop/sele offer.avif";
 import useMenu from "../../../Hooks/useMenu";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import MenuCategory from "../MenuCategory/MenuCategory";
@@ -35,12 +35,16 @@ const OurMenu = () => {
           heading={"TODAY'S OFFER"}
         ></SectionTitle>
         {/* offered menu item  */}
-        <MenuCategory items={offered}></MenuCategory>
+        <MenuCategory
+          items={offered}
+          title="Offered"
+          img={saleImg}
+        ></MenuCategory>
 
         {/* dessert menu item  */}
         <MenuCategory
           items={dessert}
-          title="Dessert"
+          title="dessert"
           img={dessertImg}
         ></MenuCategory>
         {/* pizza for menu item  */}

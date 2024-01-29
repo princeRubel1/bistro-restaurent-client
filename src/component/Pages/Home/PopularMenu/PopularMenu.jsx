@@ -14,7 +14,11 @@ const PopularMenu = () => {
         subHeading={"---Check it out---"}
         heading={"FROM OUR MENU"}
       ></SectionTitle>
-
+      <div className="grid md:grid-cols-2 gap-10">
+        {popular.map((item) => (
+          <MenuItem item={item}></MenuItem>
+        ))}
+      </div>
       <div className="text-center mt-16">
         <button
           style={{ borderRadius: "8px", borderBottom: " 3px solid black" }}

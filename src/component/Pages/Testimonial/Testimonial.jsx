@@ -14,7 +14,7 @@ const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("review.json")
+    fetch("http://localhost:4000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
