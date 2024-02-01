@@ -11,6 +11,10 @@ import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import DashBoard from "../layout/DashBoard";
 import MyCart from "../component/Pages/DashoBoard/MyCart";
 import UserHome from "../component/Pages/DashoBoard/UserHome";
+import Reservation from "../component/Pages/DashoBoard/Reservation";
+import AddReview from "../component/Pages/DashoBoard/AddReview";
+import AllUsers from "../component/Pages/DashoBoard/ForAdmin/AllUsers";
+import AddItem from "../component/Pages/DashoBoard/ForAdmin/AddItem";
 
 export const router = createBrowserRouter([
   {
@@ -53,7 +57,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashBoard></DashBoard>,
+    element: (
+      <PrivateRoutes>
+        <DashBoard></DashBoard>
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "cart",
@@ -62,6 +70,22 @@ export const router = createBrowserRouter([
       {
         path: "userhome",
         element: <UserHome></UserHome>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
+      },
+      {
+        path: "addreview",
+        element: <AddReview></AddReview>,
+      },
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "additem",
+        element: <AddItem></AddItem>,
       },
     ],
   },

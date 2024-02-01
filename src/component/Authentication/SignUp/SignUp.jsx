@@ -18,27 +18,41 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        updateUserProfile(data.name, data.photoURL)
-          .then(() => {
-            console.log("user photo updated");
-            reset();
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "User created Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/login");
+        updateUserProfile(data.name, data.photoURL).then(() => {
+          const savedUser = {
+            name: data.name,
+            email: data.email,
+            photoURL: data.photoURL,
+          };
+          fetch("http://localhost:4000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
           })
-          .catch((error) => {
-            console.log(error);
-          });
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User created Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+          // console.log("user photo updated");
+        });
       })
       .catch((error) => {
         console.log(error);

@@ -123,8 +123,9 @@ const NavBar = () => {
             <>
               <img
                 title={user?.displayName}
-                className="rounded-full mx-auto lg:mt-0 sm:mt-2 md:mt-2 mr-4 flex items-center w-14 cursor-pointer"
+                className="rounded-full mx-auto lg:mt-0 sm:mt-2 md:mt-2 mr-8 flex items-center w-14 cursor-pointer"
                 src={user?.photoURL}
+                alt=""
               />
               <Link>
                 <button
