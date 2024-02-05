@@ -3,16 +3,17 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../Hooks/useCart";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const MyCart = () => {
   const [cart, refetch] = useCart();
   console.log(cart);
   const total = cart.reduce((sum, item) => item.price + sum, 0);
-  const totalPrice = total.toFixed(2);
+  const totalPrice = parseFloat(total.toFixed(2));
 
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You want to delete food from the cart!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -43,7 +44,7 @@ const MyCart = () => {
       <Helmet>
         <title>Bistro Restaurant | My Cart</title>
       </Helmet>
-      <div className="p-10">
+      <div className="p-8">
         <div className="text-center  mx-auto space-y-2 mb-20">
           <p
             style={{ fontStyle: "italic" }}
@@ -55,44 +56,62 @@ const MyCart = () => {
             WANNA ADD MORE?
           </h2>
         </div>
-        <div className="bg-white  w-[992px] ">
-          <div className="flex justify-evenly items-center py-8">
-            <h3 className="text-3xl uppercase ">Total Order : {cart.length}</h3>
-            <h3 className="text-3xl uppercase  ">
+        <div className="bg-white mb-10 w-[992px] p-10">
+          <div className=" grid grid-cols-3 text-xl font-serif text-center uppercase py-4">
+            <h3 className="text-xl uppercase ">Total Order : {cart.length}</h3>
+            <h3 className="text-xl uppercase  ">
               Total Price : ${totalPrice}{" "}
             </h3>
-            <button className="text-xl py-1 px-8 rounded bg-yellow-600 text-white">
-              PAY
-            </button>
+            <Link to="/dashboard/payment">
+              <button className="text-xl py-1 px-8 rounded bg-yellow-600 text-white">
+                PAY
+              </button>
+            </Link>
           </div>
-          <div className="mx-20">
-            <div className="bg-yellow-600 rounded-t-2xl p-5 grid grid-cols-5 gap-5">
-              <h2 className="text-xl text-white uppercase">Number</h2>
-              <h2 className="text-xl text-white uppercase">ITEM IMAGE</h2>
-              <h2 className="text-xl text-white uppercase">ITEM NAME</h2>
-              <h2 className="text-xl text-white uppercase">PRICE</h2>
-              <h2 className="text-xl text-white uppercase">ACTION</h2>
-            </div>
-            <div>
-              {cart.map((item, index) => (
-                <div
-                  className="grid grid-cols-5 gap-5 items-center py-5"
-                  key={item._id}
-                >
-                  <p className="ml-10">{index + 1}</p>
-                  <img
-                    className="h-20 w-20 rounded-full"
-                    src={item.image}
-                    alt=""
-                  />
-                  <h2 className="w-1/6 text-xl">{item.foodName}</h2>
-                  <p>${item.price}</p>
-                  <button onClick={() => handleDelete(item)}>
-                    <MdDeleteForever className="text-4xl text-red-500" />
-                  </button>
-                </div>
-              ))}
-            </div>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead
+                style={{ background: "#D1A054" }}
+                className="text-white text-lg rounded-t-2xl"
+              >
+                <tr>
+                  <th>NUMBER</th>
+                  <th>ITEM IMAGE</th>
+                  <th>ITEM NAME</th>
+                  <th>PRICE</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item, index) => (
+                  <tr key={item._id}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-20 h-20">
+                            <img src={item.image} alt="item.foodName" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{item.foodName}</td>
+                    <td>${item.price}</td>
+
+                    <td>
+                      <button
+                        className="btn btn-ghost bg-red-500"
+                        onClick={() => handleDelete(item)}
+                      >
+                        <MdDeleteForever className="text-xl text-white"></MdDeleteForever>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              {/* foot */}
+            </table>
           </div>
         </div>
       </div>

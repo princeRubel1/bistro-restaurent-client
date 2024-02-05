@@ -2,6 +2,8 @@ import React from "react";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import { TbClockHour3, TbPhoneCall } from "react-icons/tb";
 import { IoLocation } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Reservation = () => {
   const handleReservation = (event) => {
@@ -15,6 +17,26 @@ const Reservation = () => {
     const email = form.email.value;
     const newBooking = { date, time, guest, name, phone, email };
     console.log(newBooking);
+
+    fetch("http://localhost:4000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newBooking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "success!",
+            text: "Your Bookings Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
   return (
     <div className=" ">
@@ -22,6 +44,9 @@ const Reservation = () => {
         subHeading={"---Reservation---"}
         heading={"BOOK A TABLE"}
       ></SectionTitle>
+      <Helmet>
+        <title>Bistro Restaurant | Reservation</title>
+      </Helmet>
       <div className=" mx-auto mb-24 ">
         <form
           onSubmit={handleReservation}

@@ -1,6 +1,7 @@
 import React from "react";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddReview = () => {
   const handleAddReview = (event) => {
@@ -39,9 +40,12 @@ const AddReview = () => {
         subHeading={"---Sharing is Caring!!!---"}
         heading={"GIVE A REVIEW..."}
       ></SectionTitle>
+      <Helmet>
+        <title>Bistro Restaurant | Add Review</title>
+      </Helmet>
       <div className="w-[992px] mx-auto bg-slate-200 space-y-3 p-10">
-        <h2 className="text-3xl font-serif text-center">Rate Us</h2>
-        <div className="rating rating-lg ml-[345px]">
+        {/* <h2 className="text-3xl font-serif text-center">Rate Us</h2> */}
+        {/* <div className="rating rating-lg ml-[345px]">
           <input type="radio" name="rating-9" className="rating-hidden" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input
@@ -53,19 +57,32 @@ const AddReview = () => {
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
-        </div>
+        </div> */}
         <form onSubmit={handleAddReview} className="space-y-4">
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text text-xl">What is your name?</span>
-            </div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Write your name"
-              className="input input-bordered w-full"
-            />
-          </label>
+          <div className="grid md:grid-cols-2 gap-4">
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text text-xl">What is your name?</span>
+              </div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Write your name"
+                className="input input-bordered w-full"
+              />
+            </label>
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text text-xl">Give me rate us?</span>
+              </div>
+              <input
+                type="number"
+                name="rating"
+                placeholder="Write your rating"
+                className="input input-bordered w-full"
+              />
+            </label>
+          </div>
           <label className="form-control w-full">
             <div className="label">
               <span className="label-text text-xl">

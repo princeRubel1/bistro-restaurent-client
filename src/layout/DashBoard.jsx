@@ -18,7 +18,7 @@ import useAdmin from "../component/Hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
-  // todo : load data from the server to have dynamic isAdmin based on Data
+
   // const isAdmin = true;
   const [isAdmin] = useAdmin();
   return (

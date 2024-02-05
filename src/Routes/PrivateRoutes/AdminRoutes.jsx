@@ -8,12 +8,19 @@ const AdminRoutes = ({ children }) => {
   const location = useLocation();
   const [isAdmin, isAdminLoading] = useAdmin();
   if (loading || isAdminLoading) {
-    return <progress className="progress w-56"></progress>;
+    return (
+      <div className="flex flex-col gap-4 w-[900px] mx-auto mt-60">
+        <div className="skeleton h-32 w-full"></div>
+        <div className="skeleton h-4 w-28"></div>
+        <div className="skeleton h-4 w-full"></div>
+        <div className="skeleton h-4 w-full"></div>
+      </div>
+    );
   }
   if (user && isAdmin) {
     return children;
   }
-  return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+  return <Navigate to="/" state={{ from: location }} replace></Navigate>;
 };
 
 export default AdminRoutes;

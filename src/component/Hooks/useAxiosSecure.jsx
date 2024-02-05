@@ -3,13 +3,14 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 
+const axiosSecure = axios.create({
+  baseURL: "http://localhost:4000",
+});
+
 const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const axiosSecure = axios.create({
-    baseURL: "http://localhost:4000",
-  });
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem("access-token");
